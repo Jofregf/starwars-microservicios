@@ -20,6 +20,17 @@ app.use("/planets", createProxyMiddleware({
     changeOrigin: true,
 }))
 
+app.use("*", (req, res) => {
+    res.status(404).send("Not found");
+});
+
+app.use((err, req, res, next ) => {
+    res.status(err.statusCode || 500).send({
+        error: true,
+        message: err.message,
+    })
+});
+
 const PORT = 8000;
 
 async function main() {
