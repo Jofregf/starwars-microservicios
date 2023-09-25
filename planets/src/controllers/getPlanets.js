@@ -1,9 +1,8 @@
-const { response } = require("../utils");
-const axios = require("axios");
+const {response} = require("../utils");
+const data = require("../data");
 
 module.exports = async (req, res) => {
     
-    const apiURL = "http://database:8004/Planet";
-    const planet = await axios.get(apiURL);
-    response(res, 200, planet.data);
+    const planet = await data.list();
+    response(res, 200, planet);
 }

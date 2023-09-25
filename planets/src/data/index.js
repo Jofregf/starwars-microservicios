@@ -1,10 +1,33 @@
 const planets = require("./planets.json");
+const axios = require("axios");
+
+// const apiUrl = "http://localhost:8004/Planet";
+const apiUrl = "http://database:8004/Planet";
 
 module.exports = {
     list: async () => {
-        return planets;
+        const {data} = await axios.get(apiUrl);
+        return data.data;
     },
-    create: async () => {
-        throw Error("hay un error en la BDD al momento de crear un planeta");
+
+    create: async (planet) => {
+        // throw Error("hay un error en la BDD al momento de crear el planet")
+        const {data} = await axios.post(apiUrl, planet);
+        return data.data;
     },
+    
+    getOne: async (id) => {
+        const {data} = await axios.get(`${apiUrl}/${id}`);
+        return data.data;
+    },
+
+    remove: async (id) => {
+        const {data} = await axios.delete(`${apiUrl}/${id}`);
+        return data.data;
+    },
+
+    update: async (id, planet) => {
+        const {data} = await axios.put(`${apiUrl}/${id}`, planet);
+        return data.data;
+    }
 };

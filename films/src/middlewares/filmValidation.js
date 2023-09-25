@@ -41,7 +41,7 @@ module.exports = (req, res, next) => {
     for (const planet of planets) {
         if (!planet || typeof planet !== "object" || !planet._id || !planet.name) {
             throw new Error(
-                "Cada planet debe tener las propiedades _id y title",
+                "Cada planet debe tener las propiedades _id y name",
                 400
             );
         }
