@@ -10,7 +10,7 @@ router.post("/", middlewares.planetValidation, controllers.createPlanet);
 
 router.get("/:id", controllers.getPlanet);
 
-router.delete("/", controllers.removePlanet);
+router.delete("/:id", controllers.removePlanet);
 
 router.put("/:id", middlewares.planetValidation, controllers.updatePlanets);
 
