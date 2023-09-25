@@ -1,9 +1,8 @@
-const { response } = require("../utils");
-const axios = require("axios");
+const {response} = require("../utils");
+const data = require("../data");
 
 module.exports = async (req, res) => {
     
-    const apiURL = "http://database:8004/Film";
-    const film = await axios.get(apiURL)
-    response(res, 200, film.data)
+    const film = await data.list();
+    response(res, 200, film);
 }

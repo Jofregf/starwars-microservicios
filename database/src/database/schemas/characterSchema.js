@@ -1,8 +1,12 @@
 const { Schema } = require("mongoose");
 const { ClientError } = require("../../utils/errors");
+const {v4: uuidv4} = require("uuid");
 
 const characterSchema = new Schema({
-    _id: String,
+    _id: {
+        type: String, 
+        default: uuidv4
+    },
     name: {
         type: String,
         required: true,
